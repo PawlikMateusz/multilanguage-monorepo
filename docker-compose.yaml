@@ -3,7 +3,7 @@ version: '3'
 services:
   go-service:
     build:
-      context: ./golang
+      context: ./services/golang
       dockerfile: ./Dockerfile
       args:
         project: ./cmd/go-service/
@@ -12,7 +12,7 @@ services:
 
   python-service:
     build:
-      context: ./python
+      context: ./services/python
       dockerfile: ./Dockerfile
       args:
         project: ./python-service
