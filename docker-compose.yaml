@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  go-service:
+    build:
+      context: ./golang
+      dockerfile: ./Dockerfile
+      args:
+        project: ./cmd/go-service/
+    environment:
+      - PORT=8080
+
+  python-service:
+    build:
+      context: ./python
+      dockerfile: ./Dockerfile
+      args:
+        project: ./python-service
+    environment:
+      - PORT=3000
+      - GO_SERVICE_PORT=8080
+

@@ -1,0 +1,13 @@
+FROM golang:latest
+
+WORKDIR /test
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+
+ARG project
+RUN CGO_ENABLED=0 go test -v -cover $project \
+    | sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' \
+    | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' \
